@@ -26,59 +26,12 @@ import java.util.Properties;
  */
 @Configuration
 @EnableWebMvc
-@EnableTransactionManagement
-@EnableJpaRepositories(value = "com.andre.mvc.database.repository", entityManagerFactoryRef = "entityManagerFactory")
+//@EnableTransactionManagement
+//@EnableJpaRepositories(value = {"com.andre.mvc.database.repository"}/*, entityManagerFactoryRef = "entityManagerFactory"*/)
 @ComponentScan("com.andre.mvc")
-@PropertySource("classpath:application.properties")
+//@PropertySource("classpath:application.properties")
 @ImportResource("WEB-INF/spring-security.xml")
 public class WebAppConfig extends WebMvcConfigurerAdapter {
-
-    private static final String PROPERTY_NAME_DATABASE_DRIVER = "db.driver";
-    private static final String PROPERTY_NAME_DATABASE_PASSWORD = "db.password";
-    private static final String PROPERTY_NAME_DATABASE_URL = "db.url";
-    private static final String PROPERTY_NAME_DATABASE_USERNAME = "db.username";
-
-    private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "hibernate.dialect";
-    private static final String PROPERTY_NAME_HIBERNATE_SHOW_SQL = "hibernate.show_sql";
-    private static final String PROPERTY_NAME_ENTITYMANAGER_PACKAGES_TO_SCAN = "entitymanager.packages.to.scan";
-
-    @Resource
-    private Environment env;
-
-    @Bean
-    public DataSource dataSource() {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-
-        dataSource.setDriverClassName(env.getRequiredProperty(PROPERTY_NAME_DATABASE_DRIVER));
-        dataSource.setUrl(env.getRequiredProperty(PROPERTY_NAME_DATABASE_URL));
-        dataSource.setUsername(env.getRequiredProperty(PROPERTY_NAME_DATABASE_USERNAME));
-        dataSource.setPassword(env.getRequiredProperty(PROPERTY_NAME_DATABASE_PASSWORD));
-
-        return dataSource;
-    }
-
-    @Bean
-    public LocalSessionFactoryBean sessionFactory() {
-        LocalSessionFactoryBean sessionFactoryBean = new LocalSessionFactoryBean();
-        sessionFactoryBean.setDataSource(dataSource());
-        sessionFactoryBean.setPackagesToScan(env.getRequiredProperty(PROPERTY_NAME_ENTITYMANAGER_PACKAGES_TO_SCAN));
-        sessionFactoryBean.setHibernateProperties(hibProperties());
-        return sessionFactoryBean;
-    }
-
-    private Properties hibProperties() {
-        Properties properties = new Properties();
-        properties.put(PROPERTY_NAME_HIBERNATE_DIALECT, env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_DIALECT));
-        properties.put(PROPERTY_NAME_HIBERNATE_SHOW_SQL, env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_SHOW_SQL));
-        return properties;
-    }
-
-    @Bean
-    public HibernateTransactionManager transactionManager() {
-        HibernateTransactionManager transactionManager = new HibernateTransactionManager();
-        transactionManager.setSessionFactory(sessionFactory().getObject());
-        return transactionManager;
-    }
 
     @Bean
     public UrlBasedViewResolver setupViewResolver() {
@@ -98,21 +51,6 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
     CustomUserDetailsService customUserDetailsService() {
         return new CustomUserDetailsService();
     }
-
-    @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-        HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-        vendorAdapter.setDatabase(Database.MYSQL);
-        vendorAdapter.setGenerateDdl(true);
-        vendorAdapter.setShowSql(true);
-        LocalContainerEntityManagerFactoryBean factory =
-                new LocalContainerEntityManagerFactoryBean();
-        factory.setJpaVendorAdapter(vendorAdapter);
-        factory.setPackagesToScan(getClass().getPackage().getName());
-        factory.setDataSource(dataSource());
-        return factory;
-    }
-
 
 //    @Bean
 //    public PlatformTransactionManager transactionManager() {
