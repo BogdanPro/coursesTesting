@@ -26,10 +26,7 @@ import java.util.Properties;
  */
 @Configuration
 @EnableWebMvc
-//@EnableTransactionManagement
-//@EnableJpaRepositories(value = {"com.andre.mvc.database.repository"}/*, entityManagerFactoryRef = "entityManagerFactory"*/)
 @ComponentScan("com.andre.mvc")
-//@PropertySource("classpath:application.properties")
 @ImportResource("WEB-INF/spring-security.xml")
 public class WebAppConfig extends WebMvcConfigurerAdapter {
 
@@ -51,12 +48,5 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
     CustomUserDetailsService customUserDetailsService() {
         return new CustomUserDetailsService();
     }
-
-//    @Bean
-//    public PlatformTransactionManager transactionManager() {
-//        JpaTransactionManager txManager = new JpaTransactionManager();
-//        txManager.setEntityManagerFactory(entityManagerFactory());
-//        return txManager;
-//    }
 
 }
