@@ -15,7 +15,7 @@
               <security:logout logout-success-url="/login"/>
        </security:http>
        <!--<security:authentication-manager>-->
-              <!--<security:authentication-provider user-service-ref="customUserDetailsService">-->
+              <!--<security:authentication-provider user-manager-ref="customUserDetailsService">-->
                      <!--<security:password-encoder hash="plaintext"/>-->
               <!--</security:authentication-provider>-->
        <!--</security:authentication-manager>-->

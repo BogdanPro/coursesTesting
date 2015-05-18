@@ -18,6 +18,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.5.4/bootstrap-select.min.js"></script>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
   <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="/res/js/jquery.md5.js"></script>
   <%--<link rel="stylesheet" href="/res/css/bootstrap.min.css">--%>
   <%--<link rel="stylesheet" href="/res/css/bootstrap-theme.min.css">--%>
   <%--<link rel="stylesheet" href="/res/css/bootstrap-select.min.css">--%>
@@ -182,7 +183,7 @@
                     </div>
                   </div>
                 </form>
-                <form id="register-form" action="/registration" method="post" role="form" style="display: none;">
+                <form id="register-form" onsubmit="encodePassword();" action="/registration" method="post" role="form" style="display: none;">
                   <div class="form-group">
                     <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="" required>
                   </div>
@@ -214,6 +215,15 @@
     </div>
   </div>
 <script type="text/javascript">
+
+  encodePassword = function() {
+    var securedPassword = $.md5($("#password").val());
+    var securedConfirmPassword = $.md5($("#confirm_password").val());
+    alert(securedConfirmPassword);
+    $("#password").val(securedPassword);
+    $("#confirm_password").val(securedConfirmPassword);
+  };
+
   $(function() {
 
     $('#login-form-link').click(function(e) {

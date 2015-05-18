@@ -1,19 +1,24 @@
 package com.andre.mvc.controller;
 
-import com.andre.mvc.database.entity.*;
-import com.andre.mvc.database.repository.CoachRepository;
-import com.andre.mvc.database.repository.CourseRepository;
-import com.andre.mvc.database.repository.GroupRepository;
-import com.andre.mvc.database.repository.PlaceRepository;
-import com.andre.mvc.service.ClientServiceImpl;
+import com.andre.mvc.database.crm.entity.*;
+import com.andre.mvc.database.crm.repository.CoachRepository;
+import com.andre.mvc.database.crm.repository.CourseRepository;
+import com.andre.mvc.database.crm.repository.GroupRepository;
+import com.andre.mvc.database.crm.repository.PlaceRepository;
+import com.andre.mvc.database.forum.entity.Member;
+import com.andre.mvc.manager.ClientServiceImpl;
+import com.andre.mvc.manager.ForumManagerImpl;
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
+import org.springframework.security.crypto.keygen.KeyGenerators;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.xml.bind.DatatypeConverter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +37,9 @@ public class MainController {
 
     @Autowired
     private ClientServiceImpl clientService;
+
+    @Autowired
+    private ForumManagerImpl forumManager;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String welcome() {
@@ -70,6 +78,7 @@ public class MainController {
             @RequestParam String password,
             @RequestParam String confirm_password
     ) {
+
         if(!password.equals(confirm_password)) {
             return new ModelAndView("login", "errMsg", "Password and confirm password values not equal!");
         }
@@ -78,13 +87,33 @@ public class MainController {
             return new ModelAndView("login", "errMsg", "Account with entered phone already exist. Please, enter another phone or login!");
         }
 
+        // generate the "salt" value for password encoding
+        byte[] saltBytes = KeyGenerators.secureRandom(2).generateKey();
+        String salt = DatatypeConverter.printHexBinary(saltBytes);
+
+        // encoding password with "salt"
+        Md5PasswordEncoder passwordEncoder = new Md5PasswordEncoder();
+        password = passwordEncoder.encodePassword(password, salt);
+
         Client client = new Client();
         client.setName(username);
         client.setEmail(email);
         client.setPhone(phone);
         client.setPassword(password);
+        client.setSalt(salt);
+
+        System.out.println(client.getPassword());
 
         clientService.save(client);
+//
+        Member member = new Member();
+        member.setName(username);
+        member.setEmail(email);
+        member.setPassword(password);
+        member.setSalt(salt);
+//
+//        forumManager.save(member);
+
         return new ModelAndView("cabinet");
     }
 
@@ -244,7 +273,9 @@ public class MainController {
     @ResponseBody
     public JsonResponse saveCourse(@RequestBody Course course) throws JSONException{
         if(!course.getName().isEmpty()) {
-            courseRepository.save(course);
+            Course savedCourse = courseRepository.save(course);
+
+            System.out.println(savedCourse.getName());
             return new JsonResponse("Ok");
         } else {
             return new JsonResponse("You should enter course name. Course not saved");
@@ -380,9 +411,9 @@ public class MainController {
     public JsonResponse deleteGroup(@RequestParam Long id) {
         if(groupRepository.findOne(id) != null) {
             groupRepository.delete(id);
-            return new JsonResponse("Course was deleted!");
+            return new JsonResponse("Group was deleted!");
         } else {
-            return new JsonResponse("Course not exist! Impossible to delete from db!");
+            return new JsonResponse("Group not exist! Impossible to delete from db!");
         }
     }
 

@@ -20,7 +20,7 @@ import java.util.Properties;
  */
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(value = "com.andre.mvc.database.external_repository",
+@EnableJpaRepositories(value = "com.andre.mvc.database.forum.repository",
         entityManagerFactoryRef = "secondaryEntityManagerFactory",
         transactionManagerRef = "secondaryTransactionManager")
 @PropertySource("classpath:application.properties")
@@ -34,6 +34,8 @@ public class SecondaryDataBaseConfig {
     private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "hibernate.dialect";
     private static final String PROPERTY_NAME_HIBERNATE_SHOW_SQL = "hibernate.show_sql";
     private static final String PROPERTY_NAME_ENTITYMANAGER_PACKAGES_TO_SCAN2 = "entitymanager.packages.to.scan2";
+
+    private static final String PACKAGES_TO_SCAN_FOR_ENTITY_MANAGER = "com.andre.mvc.database.forum";
 
     @Resource
     private Environment env;
@@ -82,7 +84,7 @@ public class SecondaryDataBaseConfig {
         LocalContainerEntityManagerFactoryBean factory =
                 new LocalContainerEntityManagerFactoryBean();
         factory.setJpaVendorAdapter(vendorAdapter);
-        factory.setPackagesToScan(getClass().getPackage().getName());
+        factory.setPackagesToScan(PACKAGES_TO_SCAN_FOR_ENTITY_MANAGER);
         factory.setDataSource(secondaryDataSource());
         return factory;
     }
