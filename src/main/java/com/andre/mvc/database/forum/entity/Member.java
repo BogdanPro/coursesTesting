@@ -26,8 +26,26 @@ public class Member {
     @Column(name = "email_address")
     private String email;
 
-    @Column()
+    @Column(name = "password_salt")
     private String salt;
+
+    // This and other fields, initialized with ampty string
+    // are colled to prevent hibernate exception - in db this columns
+    // can't be null
+    @Column(name = "buddy_list")
+    private String buddyList = "";
+
+    @Column(name = "message_labels")
+    private String messageLabels = "";
+
+    @Column(name = "openid_uri")
+    private String openIdUri = "";
+
+    @Column(name = "signature")
+    private String signature = "";
+
+    @Column(name = "ignore_boards")
+    private String ignoreBoards = "";
 
     public String getSalt() {
         return salt;
@@ -75,5 +93,45 @@ public class Member {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getBuddyList() {
+        return buddyList;
+    }
+
+    public void setBuddyList(String buddyList) {
+        this.buddyList = buddyList;
+    }
+
+    public String getMessageLabels() {
+        return messageLabels;
+    }
+
+    public void setMessageLabels(String messageLabels) {
+        this.messageLabels = messageLabels;
+    }
+
+    public String getOpenIdUri() {
+        return openIdUri;
+    }
+
+    public void setOpenIdUri(String openIdUri) {
+        this.openIdUri = openIdUri;
+    }
+
+    public String getSignature() {
+        return signature;
+    }
+
+    public void setSignature(String signature) {
+        this.signature = signature;
+    }
+
+    public String getIgnoreBoards() {
+        return ignoreBoards;
+    }
+
+    public void setIgnoreBoards(String ignoreBoards) {
+        this.ignoreBoards = ignoreBoards;
     }
 }

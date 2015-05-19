@@ -38,10 +38,6 @@ public class PrimaryDataBaseConfig {
     private static final String PROPERTY_NAME_DATABASE_URL_PRIMARY = "db1.url";
     private static final String PROPERTY_NAME_DATABASE_USERNAME_PRIMARY = "db1.username";
 
-    private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "hibernate.dialect";
-    private static final String PROPERTY_NAME_HIBERNATE_SHOW_SQL = "hibernate.show_sql";
-    private static final String PROPERTY_NAME_ENTITYMANAGER_PACKAGES_TO_SCAN1 = "entitymanager.packages.to.scan1";
-
     private static final String PACKAGES_TO_SCAN_FOR_ENTITY_MANAGER = "com.andre.mvc.database.crm";
 
     @Resource
@@ -59,29 +55,6 @@ public class PrimaryDataBaseConfig {
         return dataSource;
     }
 
-//    @Bean
-//    public LocalSessionFactoryBean primarySessionFactory() {
-//        LocalSessionFactoryBean sessionFactoryBean = new LocalSessionFactoryBean();
-//        sessionFactoryBean.setDataSource(primaryDataSource());
-//        sessionFactoryBean.setPackagesToScan(env.getRequiredProperty(PROPERTY_NAME_ENTITYMANAGER_PACKAGES_TO_SCAN1));
-//        sessionFactoryBean.setHibernateProperties(hibProperties());
-//        return sessionFactoryBean;
-//    }
-
-//    private Properties hibProperties() {
-//        Properties properties = new Properties();
-//        properties.put(PROPERTY_NAME_HIBERNATE_DIALECT, env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_DIALECT));
-//        properties.put(PROPERTY_NAME_HIBERNATE_SHOW_SQL, env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_SHOW_SQL));
-//        return properties;
-//    }
-
-//    @Bean
-//    public HibernateTransactionManager primaryTransactionManager() {
-//        HibernateTransactionManager transactionManager = new HibernateTransactionManager();
-//        transactionManager.setSessionFactory(primarySessionFactory().getObject());
-//        return transactionManager;
-//    }
-
     @Bean
     @Autowired
     public JpaTransactionManager primaryTransactionManager(@Qualifier("primaryEntityManagerFactory") EntityManagerFactory entityManagerFactory) {
@@ -89,20 +62,6 @@ public class PrimaryDataBaseConfig {
         transactionManager.setEntityManagerFactory(entityManagerFactory);
         return transactionManager;
     }
-
-//    @Bean
-//    public LocalContainerEntityManagerFactoryBean primaryEntityManagerFactory() {
-//        HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-//        vendorAdapter.setDatabase(Database.MYSQL);
-//        vendorAdapter.setGenerateDdl(true);
-//        vendorAdapter.setShowSql(true);
-//        LocalContainerEntityManagerFactoryBean factory =
-//                new LocalContainerEntityManagerFactoryBean();
-//        factory.setJpaVendorAdapter(vendorAdapter);
-//        factory.setPackagesToScan(PACKAGES_TO_SCAN_FOR_ENTITY_MANAGER);
-//        factory.setDataSource(primaryDataSource());
-//        return factory;
-//    }
 
     @Bean
     public LocalContainerEntityManagerFactoryBean primaryEntityManagerFactory() {

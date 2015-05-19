@@ -11,6 +11,7 @@ import com.andre.mvc.manager.ForumManagerImpl;
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
+import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.security.crypto.keygen.KeyGenerators;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,6 +41,9 @@ public class MainController {
 
     @Autowired
     private ForumManagerImpl forumManager;
+
+    @Autowired
+    private ShaPasswordEncoder passwordEncoder;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String welcome() {
@@ -91,8 +95,9 @@ public class MainController {
         byte[] saltBytes = KeyGenerators.secureRandom(2).generateKey();
         String salt = DatatypeConverter.printHexBinary(saltBytes);
 
+        // creating password for smf database
+        String passwordForForum = passwordEncoder.encodePassword(username.toLowerCase() + password, null);
         // encoding password with "salt"
-        Md5PasswordEncoder passwordEncoder = new Md5PasswordEncoder();
         password = passwordEncoder.encodePassword(password, salt);
 
         Client client = new Client();
@@ -102,19 +107,18 @@ public class MainController {
         client.setPassword(password);
         client.setSalt(salt);
 
-        System.out.println(client.getPassword());
-
         clientService.save(client);
-//
+
         Member member = new Member();
         member.setName(username);
         member.setEmail(email);
-        member.setPassword(password);
+        member.setPassword(passwordForForum);
         member.setSalt(salt);
-//
-//        forumManager.save(member);
+        member.setGroup(0);
 
-        return new ModelAndView("cabinet");
+        forumManager.save(member);
+
+        return new ModelAndView("login");
     }
 
     @RequestMapping(value = "admin/clients/main")
