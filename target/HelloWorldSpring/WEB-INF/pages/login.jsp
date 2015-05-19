@@ -158,7 +158,7 @@
           <div class="panel-body">
             <div class="row">
               <div class="col-lg-12">
-                <form id="login-form" action='${loginUrl}' method="post" role="form" style="display: block;">
+                <form id="login-form" action='${loginUrl}' <%--onsubmit="encodePasswordSingIn();"--%> method="post" role="form" style="display: block;">
                   <div class="form-group">
                     <input type="text" name="username" id="j_username" tabindex="1" class="form-control" placeholder="Phone">
                   </div>
@@ -183,7 +183,7 @@
                     </div>
                   </div>
                 </form>
-                <form id="register-form" onsubmit="encodePassword();" action="/registration" method="post" role="form" style="display: none;">
+                <form id="register-form" <%--onsubmit="encodePasswordReg();"--%> action="/registration" method="post" role="form" style="display: none;">
                   <div class="form-group">
                     <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="" required>
                   </div>
@@ -216,10 +216,15 @@
   </div>
 <script type="text/javascript">
 
-  encodePassword = function() {
+  encodePasswordSingIn = function() {
+    var securedPassword = $.md5($("#j_password").val());
+    alert(securedPassword);
+    $("#j_password").val(securedPassword);
+  }
+
+  encodePasswordReg = function() {
     var securedPassword = $.md5($("#password").val());
     var securedConfirmPassword = $.md5($("#confirm_password").val());
-    alert(securedConfirmPassword);
     $("#password").val(securedPassword);
     $("#confirm_password").val(securedConfirmPassword);
   };

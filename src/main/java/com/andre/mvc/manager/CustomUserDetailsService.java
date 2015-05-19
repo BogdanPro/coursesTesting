@@ -6,7 +6,6 @@ import com.andre.mvc.database.crm.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -25,26 +24,32 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        System.out.println("********************************8" + username);
+        System.out.println("Username: " + username);
+
 
         Client client = clientRepository.findByPhone(username);
 
         System.out.println(client.getName());
+        System.out.println(client.getPassword());
+        System.out.println(client.getSalt());
 
         boolean enabled = true;
         boolean accountNonExpired = true;
         boolean credentialsNonExpired = true;
         boolean accountNonLocked = true;
 
-        return new User(
+        SaltedUser saltedUser = new SaltedUser(
                 username,
                 client.getPassword(),
                 enabled,
                 accountNonExpired,
                 credentialsNonExpired,
                 accountNonLocked,
-                getAutorities(client.getGroup())
+                getAutorities(client.getGroup()),
+                client.getSalt()
         );
+
+        return saltedUser;
     }
 
     public Collection<? extends GrantedAuthority> getAutorities(Group group) {
@@ -55,7 +60,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     public List<String> getRoles(Group group) {
         List<String> roles = new ArrayList<String>();
 
-        if(group.getName().equals("Admins")) {
+        if(group != null && group.getName().equals("Admins")) {
             roles.add("ROLE_ADMIN");
             roles.add("ROLE_USER");
         } else {
