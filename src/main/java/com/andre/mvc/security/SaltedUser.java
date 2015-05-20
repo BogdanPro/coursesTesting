@@ -1,4 +1,4 @@
-package com.andre.mvc.manager;
+package com.andre.mvc.security;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;

@@ -1,4 +1,4 @@
-package com.andre.mvc.manager;
+package com.andre.mvc.security;
 
 import com.andre.mvc.database.crm.entity.Client;
 import com.andre.mvc.database.crm.entity.Group;
@@ -24,14 +24,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        System.out.println("Username: " + username);
-
-
         Client client = clientRepository.findByPhone(username);
-
-        System.out.println(client.getName());
-        System.out.println(client.getPassword());
-        System.out.println(client.getSalt());
 
         boolean enabled = true;
         boolean accountNonExpired = true;

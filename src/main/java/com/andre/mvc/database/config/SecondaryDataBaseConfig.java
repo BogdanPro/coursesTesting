@@ -1,4 +1,4 @@
-package com.andre.mvc.database;
+package com.andre.mvc.database.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

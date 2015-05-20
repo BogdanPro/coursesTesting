@@ -1,6 +1,5 @@
 package com.andre.mvc.init;
 
-import com.andre.mvc.database.WebAppConfig;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;

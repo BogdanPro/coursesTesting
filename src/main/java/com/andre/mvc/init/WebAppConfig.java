@@ -1,6 +1,6 @@
-package com.andre.mvc.database;
+package com.andre.mvc.init;
 
-import com.andre.mvc.manager.CustomUserDetailsService;
+import com.andre.mvc.security.CustomUserDetailsService;
 import org.springframework.context.annotation.*;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;

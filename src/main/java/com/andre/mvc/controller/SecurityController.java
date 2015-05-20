@@ -22,9 +22,9 @@ public class SecurityController {
         return modelAndView;
     }
 
-    @RequestMapping(value="/success-login", method=RequestMethod.GET)
+    @RequestMapping(value="/client/cabinet", method=RequestMethod.GET)
     public ModelAndView successLogin() {
-        return new ModelAndView("cabinet");
+        return new ModelAndView("client/cabinet");
     }
 
 }
