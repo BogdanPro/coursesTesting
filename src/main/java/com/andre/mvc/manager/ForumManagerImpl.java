@@ -4,8 +4,15 @@ import com.andre.mvc.database.forum.entity.Member;
 import com.andre.mvc.database.forum.entity.MemberGroup;
 import com.andre.mvc.database.forum.repository.MemberGroupRepository;
 import com.andre.mvc.database.forum.repository.MemberRepository;
+import com.andre.mvc.schedule.ForumTaskScheduler;
+import com.andre.mvc.schedule.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 
 /**
  * Created by 1 on 18.05.2015.
@@ -32,6 +39,20 @@ public class ForumManagerImpl implements ForumManager {
 
     @Override
     public void save(Member member) {
-        memberRepository.save(member);
+
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/andretest", "root", "password");
+
+            memberRepository.save(member);
+
+            connection.close();
+        } catch (SQLException e) {
+            Task task = new Task();
+            task.setArgument(member);
+            ForumTaskScheduler.addTask(task);
+            try {
+                task.setMethod(ForumManagerImpl.class.getMethod("save", Member.class));
+            } catch (NoSuchMethodException cantHappen) {}
+        }
     }
 }

@@ -2,6 +2,7 @@ package com.andre.mvc.init;
 
 import com.andre.mvc.security.CustomUserDetailsService;
 import org.springframework.context.annotation.*;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
  */
 @Configuration
 @EnableWebMvc
+@EnableScheduling
 @ComponentScan("com.andre.mvc")
 @ImportResource("WEB-INF/spring-security.xml")
 public class WebAppConfig extends WebMvcConfigurerAdapter {

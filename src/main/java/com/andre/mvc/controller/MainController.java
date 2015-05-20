@@ -10,7 +10,6 @@ import com.andre.mvc.manager.ClientServiceImpl;
 import com.andre.mvc.manager.ForumManagerImpl;
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.security.crypto.keygen.KeyGenerators;
 import org.springframework.stereotype.Controller;
@@ -25,7 +24,6 @@ import java.util.List;
 
 @Controller
 public class MainController {
-//    @Autowired
 
     @Autowired
     private CoachRepository coachRepository;
@@ -49,19 +47,6 @@ public class MainController {
     public String welcome() {
         return "login";
     }
-
-
-    //login
-//    @RequestMapping(value = "/login", method = RequestMethod.POST)
-//    public ModelAndView login(@RequestParam String phone, @RequestParam String password) {
-//        Client client = clientRepository.findByPhone(phone);
-//
-//        if(client != null && client.getPassword().equals(password))  {
-//            return new ModelAndView("cabinet");
-//        }
-//
-//        return new ModelAndView("login", "errMsg", "Illegal phone or password!");
-//    }
 
     @RequestMapping(value = "/loginError", method = RequestMethod.POST)
     public ModelAndView loginErr() {
@@ -97,7 +82,6 @@ public class MainController {
 
         // creating password for smf database
         String passwordForForum = passwordEncoder.encodePassword(username.toLowerCase() + password, null);
-        // encoding password with "salt"
         password = passwordEncoder.encodePassword(password, salt);
 
         Client client = new Client();
