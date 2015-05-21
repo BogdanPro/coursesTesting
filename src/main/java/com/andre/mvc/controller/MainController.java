@@ -8,9 +8,12 @@ import com.andre.mvc.database.crm.repository.PlaceRepository;
 import com.andre.mvc.database.forum.entity.Member;
 import com.andre.mvc.manager.ClientServiceImpl;
 import com.andre.mvc.manager.ForumManagerImpl;
+import com.andre.mvc.security.SaltedUser;
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.keygen.KeyGenerators;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -103,6 +106,18 @@ public class MainController {
         forumManager.save(member);
 
         return new ModelAndView("login");
+    }
+
+
+    @RequestMapping(value = "client/editProfile")
+    public ModelAndView editProfile(){
+        ModelAndView modelAndView = new ModelAndView("client/edit-profile");
+
+        SaltedUser user = (SaltedUser)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        modelAndView.addObject("username", user.getUsername());
+        modelAndView.addObject("salt", user.getSalt());
+        return modelAndView;
     }
 
     @RequestMapping(value = "admin/clients/main")

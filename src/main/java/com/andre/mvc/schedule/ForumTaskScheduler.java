@@ -26,10 +26,12 @@ public class ForumTaskScheduler {
 
     private static Set<Task> queue = new LinkedHashSet<Task>();
 
-    @Scheduled(fixedRate = 5000/*600000*/) // 10 min
+    @Scheduled(fixedRate = 600000) // 10 min
     public void executeDelayedTasks() {
         try {
+            // only for testing status connection with db
             Connection connection = DriverManager.getConnection("db2.url", "db2.username", "db2.password");
+            connection.close();
         } catch (SQLException e) {
             return;
         }
@@ -38,7 +40,7 @@ public class ForumTaskScheduler {
                 Iterator<Task> iterator = queue.iterator();
                 while (iterator.hasNext()) {
                     Task task = iterator.next();
-                    task.getMethod().invoke(manager, task.getArgument()); // may throw HibernateException
+                    task.getMethod().invoke(manager, task.getArgument());
                     iterator.remove();
                 }
             } catch (ReflectiveOperationException cantHappen) { System.err.println(cantHappen); }
