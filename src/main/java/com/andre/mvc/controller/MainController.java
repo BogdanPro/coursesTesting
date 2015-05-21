@@ -8,11 +8,10 @@ import com.andre.mvc.database.crm.repository.PlaceRepository;
 import com.andre.mvc.database.forum.entity.Member;
 import com.andre.mvc.manager.ClientServiceImpl;
 import com.andre.mvc.manager.ForumManagerImpl;
-import com.andre.mvc.security.SaltedUser;
+import com.andre.mvc.security.CustomUserDetailsUser;
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.keygen.KeyGenerators;
 import org.springframework.stereotype.Controller;
@@ -106,18 +105,6 @@ public class MainController {
         forumManager.save(member);
 
         return new ModelAndView("login");
-    }
-
-
-    @RequestMapping(value = "client/editProfile")
-    public ModelAndView editProfile(){
-        ModelAndView modelAndView = new ModelAndView("client/edit-profile");
-
-        SaltedUser user = (SaltedUser)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        modelAndView.addObject("username", user.getUsername());
-        modelAndView.addObject("salt", user.getSalt());
-        return modelAndView;
     }
 
     @RequestMapping(value = "admin/clients/main")
@@ -278,7 +265,6 @@ public class MainController {
         if(!course.getName().isEmpty()) {
             Course savedCourse = courseRepository.save(course);
 
-            System.out.println(savedCourse.getName());
             return new JsonResponse("Ok");
         } else {
             return new JsonResponse("You should enter course name. Course not saved");
@@ -378,7 +364,6 @@ public class MainController {
     @RequestMapping(value = "/admin/groups/addNewGroup", method = RequestMethod.POST, headers="Accept=application/json")
     @ResponseBody
     public JsonResponse saveGroup(@RequestBody Group group) throws JSONException{
-        System.out.println(group.getCourse().getName());
         if(!group.getName().isEmpty()) {
             Coach coach = coachRepository.findByName(group.getCoach().getName());
             Place place = placeRepository.findByName(group.getPlace().getName());

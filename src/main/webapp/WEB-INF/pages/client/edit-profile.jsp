@@ -14,9 +14,9 @@
   <h2>Edit profile</h2>
   <%
     String username = (String)request.getAttribute("username");
-    String salt = (String)request.getAttribute("salt");
+    String phone = (String)request.getAttribute("phone");
   %>
   <h5><%=username%></h5>
-  <h5><%=salt%></h5>
+  <h5><%=phone%></h5>
 </body>
 </html>

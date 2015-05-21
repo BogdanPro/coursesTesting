@@ -31,18 +31,19 @@ public class CustomUserDetailsService implements UserDetailsService {
         boolean credentialsNonExpired = true;
         boolean accountNonLocked = true;
 
-        SaltedUser saltedUser = new SaltedUser(
-                username,
+        CustomUserDetailsUser customUserDetailsUser = new CustomUserDetailsUser(
+                client.getName(),
                 client.getPassword(),
                 enabled,
                 accountNonExpired,
                 credentialsNonExpired,
                 accountNonLocked,
                 getAutorities(client.getGroup()),
-                client.getSalt()
+                client.getSalt(),
+                client.getPhone()
         );
 
-        return saltedUser;
+        return customUserDetailsUser;
     }
 
     public Collection<? extends GrantedAuthority> getAutorities(Group group) {
@@ -67,7 +68,6 @@ public class CustomUserDetailsService implements UserDetailsService {
         List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 
         for(String role : roles) {
-            System.out.println(role);
             authorities.add(new SimpleGrantedAuthority(role));
         }
 
