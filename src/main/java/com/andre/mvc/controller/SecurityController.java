@@ -21,10 +21,4 @@ public class SecurityController {
         modelAndView.addObject("error", true);
         return modelAndView;
     }
-
-    @RequestMapping(value="/client/cabinet", method=RequestMethod.GET)
-    public ModelAndView successLogin() {
-        return new ModelAndView("client/cabinet");
-    }
-
 }

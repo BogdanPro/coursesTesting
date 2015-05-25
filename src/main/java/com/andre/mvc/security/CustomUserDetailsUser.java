@@ -11,6 +11,7 @@ import java.util.Collection;
 public class CustomUserDetailsUser extends User {
     private String salt;
     private String phone;
+    private String username;
 
     public CustomUserDetailsUser(String username, String password, boolean enabled,
                                  boolean accountNonExpired, boolean credentialsNonExpired,
@@ -20,6 +21,7 @@ public class CustomUserDetailsUser extends User {
                 accountNonLocked, authorities);
         this.salt = salt;
         this.phone = phone;
+        this.username = username;
     }
 
     public String getSalt() {
@@ -36,5 +38,14 @@ public class CustomUserDetailsUser extends User {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    @Override
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

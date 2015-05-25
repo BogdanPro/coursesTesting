@@ -32,7 +32,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         boolean accountNonLocked = true;
 
         CustomUserDetailsUser customUserDetailsUser = new CustomUserDetailsUser(
-                client.getName(),
+                client.getUsername(),
                 client.getPassword(),
                 enabled,
                 accountNonExpired,

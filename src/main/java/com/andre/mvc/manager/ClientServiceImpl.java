@@ -60,4 +60,11 @@ public class ClientServiceImpl implements ClientService{
     public Client loadByName(String name) {
         return clientRepository.findByName(name);
     }
+
+    @Override
+    public Client loadByUsername(String username) {
+        return clientRepository.findByUsername(username);
+    }
+
+
 }

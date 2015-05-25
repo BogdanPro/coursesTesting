@@ -18,6 +18,9 @@ public class Client {
     @JoinColumn(name="group_id")
     private Group group;
 
+    @Column
+    private String username;
+
     @Column(name = "creation_time")
     private Date creationTime;
 
@@ -66,7 +69,14 @@ public class Client {
     @Column
     private String password;
 
-//    @JsonIgnore
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     @Column(name = "password_salt")
     private String salt;
 

@@ -1,5 +1,6 @@
 package com.andre.mvc.controller;
 
+import com.andre.mvc.controller.response.JsonResponse;
 import com.andre.mvc.database.crm.entity.*;
 import com.andre.mvc.database.crm.repository.CoachRepository;
 import com.andre.mvc.database.crm.repository.CourseRepository;
@@ -8,11 +9,9 @@ import com.andre.mvc.database.crm.repository.PlaceRepository;
 import com.andre.mvc.database.forum.entity.Member;
 import com.andre.mvc.manager.ClientServiceImpl;
 import com.andre.mvc.manager.ForumManagerImpl;
-import com.andre.mvc.security.CustomUserDetailsUser;
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.keygen.KeyGenerators;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -418,23 +417,5 @@ public class MainController {
         } else {
             return new JsonResponse("You should enter course name. Course not saved");
         }
-    }
-}
-
-class JsonResponse {
-    private String status;
-
-    public JsonResponse() {}
-
-    public JsonResponse(String status) {
-        this.status = status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getStatus() {
-        return status;
     }
 }

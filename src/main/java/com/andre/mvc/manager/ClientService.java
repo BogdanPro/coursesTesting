@@ -24,4 +24,6 @@ public interface ClientService {
     public void delete(Long id);
 
     public Client loadByName(String name);
+
+    public Client loadByUsername(String username);
 }
