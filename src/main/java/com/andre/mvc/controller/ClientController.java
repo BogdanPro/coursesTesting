@@ -1,6 +1,7 @@
 package com.andre.mvc.controller;
 
 import com.andre.mvc.controller.requestClasses.EditNameRequest;
+import com.andre.mvc.controller.requestClasses.EditPhonesRequest;
 import com.andre.mvc.controller.response.JsonResponse;
 import com.andre.mvc.database.crm.entity.Client;
 import com.andre.mvc.database.forum.entity.Member;
@@ -24,7 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping(value = "/client/**")
-public class EditProfileController {
+public class ClientController {
 
     @Autowired
     private ClientService clientService;
@@ -104,5 +105,27 @@ public class EditProfileController {
             return new JsonResponse("This username is already in use or just you can't change it now",
                     JsonResponse.ERROR);
         }
+    }
+
+    @RequestMapping(value = "editProfile/changePhones", method = RequestMethod.POST, headers = "Accept=application/json")
+    @ResponseBody
+    public JsonResponse editPhone(@RequestBody EditPhonesRequest request) {
+
+        //bad validation
+        if(request.getPhone1().isEmpty()) {
+            return new JsonResponse("Primary phone can't be empty", JsonResponse.ERROR);
+        }
+
+        CustomUserDetailsUser user = (CustomUserDetailsUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        Client client = clientService.loadByPhone(user.getPhone());
+
+        client.setPhone(request.getPhone1());
+        client.setPhone2(request.getPhone2());
+        client.setPhone3(request.getPhone3());
+
+        clientService.save(client);
+        user.setPhone(client.getPhone());
+        return new JsonResponse("Changes accepted", JsonResponse.SUCCESS);
     }
 }

@@ -2,25 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9f84cef0-4524-4526-9f06-c91046d5c246" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/andre/mvc/controller/requestClasses/EditNameRequest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/andre/mvc/controller/response/JsonResponse.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/res/js/edit_profile.js" />
-      <change type="DELETED" beforePath="C:\Users\1\IdeaProjects\coursesTesting\target\HelloWorldSpring\WEB-INF\classes\com\andre\mvc\controller\JsonResponse.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\1\IdeaProjects\coursesTesting\target\classes\com\andre\mvc\controller\JsonResponse.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/HelloWorldSpring/WEB-INF/classes/com/andre/mvc/controller/MainController.class" afterPath="$PROJECT_DIR$/target/HelloWorldSpring/WEB-INF/classes/com/andre/mvc/controller/MainController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/andre/mvc/controller/MainController.class" afterPath="$PROJECT_DIR$/target/classes/com/andre/mvc/controller/MainController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/HelloWorldSpring/WEB-INF/classes/com/andre/mvc/controller/SecurityController.class" afterPath="$PROJECT_DIR$/target/HelloWorldSpring/WEB-INF/classes/com/andre/mvc/controller/SecurityController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/andre/mvc/controller/SecurityController.class" afterPath="$PROJECT_DIR$/target/classes/com/andre/mvc/controller/SecurityController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/andre/mvc/database/crm/entity/Client.java" afterPath="$PROJECT_DIR$/src/main/java/com/andre/mvc/database/crm/entity/Client.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/andre/mvc/database/crm/repository/ClientRepository.java" afterPath="$PROJECT_DIR$/src/main/java/com/andre/mvc/database/crm/repository/ClientRepository.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/andre/mvc/manager/ClientService.java" afterPath="$PROJECT_DIR$/src/main/java/com/andre/mvc/manager/ClientService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/andre/mvc/manager/ClientServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/andre/mvc/manager/ClientServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/andre/mvc/security/CustomUserDetailsService.java" afterPath="$PROJECT_DIR$/src/main/java/com/andre/mvc/security/CustomUserDetailsService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/andre/mvc/security/CustomUserDetailsUser.java" afterPath="$PROJECT_DIR$/src/main/java/com/andre/mvc/security/CustomUserDetailsUser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/andre/mvc/controller/EditProfileController.java" afterPath="$PROJECT_DIR$/src/main/java/com/andre/mvc/controller/EditProfileController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/andre/mvc/controller/MainController.java" afterPath="$PROJECT_DIR$/src/main/java/com/andre/mvc/controller/MainController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/andre/mvc/controller/SecurityController.java" afterPath="$PROJECT_DIR$/src/main/java/com/andre/mvc/controller/SecurityController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/client/edit-profile.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/client/edit-profile.jsp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/andre/mvc/controller/requestClasses/EditPhonesRequest.java" />
+      <change type="MOVED" beforePath="C:\Users\1\IdeaProjects\coursesTesting\src\main\java\com\andre\mvc\controller\EditProfileController.java" afterPath="$PROJECT_DIR$/src/main/java/com/andre/mvc/controller/ClientController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/res/js/edit_profile.js" afterPath="$PROJECT_DIR$/src/main/webapp/res/js/edit_profile.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="HelloWorldSpring.iws" />
@@ -49,13 +33,35 @@
     <splitter split-orientation="horizontal" split-proportion="0.4905897">
       <split-first>
         <leaf>
-          <file leaf-file-name="EditProfileController.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/com/andre/mvc/controller/EditProfileController.java">
+          <file leaf-file-name="ClientController.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/main/java/com/andre/mvc/controller/ClientController.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="372" max-vertical-offset="1904">
-                  <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+                <state vertical-scroll-proportion="0.80618894" vertical-offset="1681" max-vertical-offset="2295">
+                  <caret line="130" column="1" selection-start-line="130" selection-start-column="1" selection-end-line="130" selection-end-column="1" />
                   <folding>
                     <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="EditPhonesRequest.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/com/andre/mvc/controller/requestClasses/EditPhonesRequest.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="646">
+                  <caret line="8" column="31" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
+                  <folding>
+                    <element signature="e#225#226#0" expanded="true" />
+                    <element signature="e#269#270#0" expanded="true" />
+                    <element signature="e#305#306#0" expanded="true" />
+                    <element signature="e#338#339#0" expanded="true" />
+                    <element signature="e#367#368#0" expanded="true" />
+                    <element signature="e#411#412#0" expanded="true" />
+                    <element signature="e#447#448#0" expanded="true" />
+                    <element signature="e#480#481#0" expanded="true" />
+                    <element signature="e#509#510#0" expanded="true" />
+                    <element signature="e#553#554#0" expanded="true" />
+                    <element signature="e#589#590#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -66,16 +72,6 @@
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="-7.36" vertical-offset="1703" max-vertical-offset="2669">
                   <caret line="130" column="19" selection-start-line="130" selection-start-column="19" selection-end-line="130" selection-end-column="19" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="JsonResponse.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/com/andre/mvc/controller/response/JsonResponse.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="612">
-                  <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -115,10 +111,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="edit-profile.jsp" pinned="false" current-in-tab="true">
+          <file leaf-file-name="edit-profile.jsp" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/client/edit-profile.jsp">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.8202995" vertical-offset="612" max-vertical-offset="1802">
+                <state vertical-scroll-proportion="-17.0" vertical-offset="663" max-vertical-offset="1802">
                   <caret line="65" column="58" selection-start-line="65" selection-start-column="47" selection-end-line="65" selection-end-column="58" />
                   <folding />
                 </state>
@@ -138,8 +134,8 @@
           <file leaf-file-name="edit_profile.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/webapp/res/js/edit_profile.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="833">
-                  <caret line="32" column="33" selection-start-line="32" selection-start-column="33" selection-end-line="32" selection-end-column="33" />
+                <state vertical-scroll-proportion="0.0" vertical-offset="937" max-vertical-offset="1564">
+                  <caret line="77" column="11" selection-start-line="77" selection-start-column="11" selection-end-line="77" selection-end-column="11" />
                   <folding>
                     <element signature="e#0#38#0" expanded="false" />
                   </folding>
@@ -163,10 +159,10 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="MainController.java" pinned="false" current-in-tab="true">
+          <file leaf-file-name="MainController.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/com/andre/mvc/controller/MainController.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.22149837" vertical-offset="816" max-vertical-offset="6647">
+                <state vertical-scroll-proportion="0.0" vertical-offset="816" max-vertical-offset="6647">
                   <caret line="81" column="66" selection-start-line="80" selection-start-column="7" selection-end-line="81" selection-end-column="66" />
                   <folding>
                     <element signature="e#1692#1693#0" expanded="true" />
@@ -176,10 +172,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="SecurityController.java" pinned="false" current-in-tab="false">
+          <file leaf-file-name="SecurityController.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/com/andre/mvc/controller/SecurityController.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425">
+                <state vertical-scroll-proportion="0.46092504" vertical-offset="0" max-vertical-offset="627">
                   <caret line="22" column="5" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
                   <folding />
                 </state>
@@ -281,8 +277,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/springapp/mvc/database/SecurityConfig.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/springapp/mvc/service/CustomUserDetailsService.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/springapp/mvc/AppTests.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/andre/mvc/external_database/entity/Member.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/andre/mvc/database/external_entity/Member.java" />
@@ -329,9 +323,11 @@
         <option value="$PROJECT_DIR$/src/main/java/com/andre/mvc/manager/ClientServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/andre/mvc/database/crm/repository/ClientRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/andre/mvc/security/CustomUserDetailsUser.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/res/js/edit_profile.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/client/edit-profile.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/andre/mvc/controller/requestClasses/EditPhonesRequest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/andre/mvc/controller/EditProfileController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/res/js/edit_profile.js" />
+        <option value="$PROJECT_DIR$/src/main/java/com/andre/mvc/controller/ClientController.java" />
       </list>
     </option>
   </component>
@@ -560,6 +556,40 @@
               <option name="myItemId" value="webapp" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="coursesTesting" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="coursesTesting" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -602,6 +632,70 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="mvc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="coursesTesting" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="coursesTesting" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mvc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controller" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="coursesTesting" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="coursesTesting" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mvc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controller" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="requestClasses" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1061,7 +1155,7 @@
       <workItem from="1432187327707" duration="4944000" />
       <workItem from="1432201243144" duration="1006000" />
       <workItem from="1432273346111" duration="6091000" />
-      <workItem from="1432535358022" duration="22169000" />
+      <workItem from="1432535358022" duration="23587000" />
     </task>
     <task id="LOCAL-00001" summary="added access to second database">
       <created>1431878170390</created>
@@ -1111,15 +1205,21 @@
       <option name="project" value="LOCAL" />
       <updated>1432201447222</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="added possibility to edit username on crm server">
+      <created>1432560278881</created>
+      <option name="number" value="00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1432560278881</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="340000000" />
+    <option name="totallyTimeSpent" value="341418000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1096" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1142,7 +1242,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33704454" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16979167" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16979167" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32692307" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1177,7 +1277,8 @@
     <MESSAGE value="added scheduler for delayed tasks with forum db and simple implementation of last one" />
     <MESSAGE value="added simple page for editing profile" />
     <MESSAGE value="created new controller and changed custom secutity user class" />
-    <option name="LAST_COMMIT_MESSAGE" value="created new controller and changed custom secutity user class" />
+    <MESSAGE value="added possibility to edit username on crm server" />
+    <option name="LAST_COMMIT_MESSAGE" value="added possibility to edit username on crm server" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1190,13 +1291,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/courses_testing20150513.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5185">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Courses_testing.iml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="1632">
@@ -1479,14 +1573,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/andre/mvc/controller/SecurityController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425">
-          <caret line="22" column="5" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/andre/mvc/controller/response/JsonResponse.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="612">
@@ -1586,16 +1672,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/res/js/edit_profile.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="833">
-          <caret line="32" column="33" selection-start-line="32" selection-start-column="33" selection-end-line="32" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#38#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/login.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-9.807693" vertical-offset="1989" max-vertical-offset="4403">
@@ -1612,9 +1688,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/client/edit-profile.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-17.0" vertical-offset="663" max-vertical-offset="1802">
+          <caret line="65" column="58" selection-start-line="65" selection-start-column="47" selection-end-line="65" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/andre/mvc/controller/MainController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.22149837" vertical-offset="816" max-vertical-offset="6647">
+        <state vertical-scroll-proportion="0.0" vertical-offset="816" max-vertical-offset="6647">
           <caret line="81" column="66" selection-start-line="80" selection-start-column="7" selection-end-line="81" selection-end-column="66" />
           <folding>
             <element signature="e#1692#1693#0" expanded="true" />
@@ -1623,21 +1707,51 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/andre/mvc/controller/EditProfileController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/andre/mvc/controller/requestClasses/EditPhonesRequest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="372" max-vertical-offset="1904">
-          <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="646">
+          <caret line="8" column="31" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#225#226#0" expanded="true" />
+            <element signature="e#269#270#0" expanded="true" />
+            <element signature="e#305#306#0" expanded="true" />
+            <element signature="e#338#339#0" expanded="true" />
+            <element signature="e#367#368#0" expanded="true" />
+            <element signature="e#411#412#0" expanded="true" />
+            <element signature="e#447#448#0" expanded="true" />
+            <element signature="e#480#481#0" expanded="true" />
+            <element signature="e#509#510#0" expanded="true" />
+            <element signature="e#553#554#0" expanded="true" />
+            <element signature="e#589#590#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/client/edit-profile.jsp">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/andre/mvc/controller/SecurityController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8202995" vertical-offset="612" max-vertical-offset="1802">
-          <caret line="65" column="58" selection-start-line="65" selection-start-column="47" selection-end-line="65" selection-end-column="58" />
+        <state vertical-scroll-proportion="0.46092504" vertical-offset="0" max-vertical-offset="627">
+          <caret line="22" column="5" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/res/js/edit_profile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="937" max-vertical-offset="1564">
+          <caret line="77" column="11" selection-start-line="77" selection-start-column="11" selection-end-line="77" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#38#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/andre/mvc/controller/ClientController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.80618894" vertical-offset="1681" max-vertical-offset="2295">
+          <caret line="130" column="1" selection-start-line="130" selection-start-column="1" selection-end-line="130" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
