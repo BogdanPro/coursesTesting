@@ -78,7 +78,7 @@
     <div class="input-group">
       <input type="text" id="social_links" class="form-control" style="width: 300px">
     </div>
-    <button class="btn btn-primary btn-md" id="save_social" style="margin-top: 10px">Save</button>
+    <button class="btn btn-primary btn-md" id="save_socials" style="margin-top: 10px">Save</button>
 
     <hr>
     <h4>Change password</h4>

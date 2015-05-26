@@ -6,16 +6,11 @@ saveNames = function() {
         {
             url: "/client/editProfile/changeName",
             type: "POST",
-            dataType: "json",
-            contentType: "application/json",
-            data: JSON.stringify(
-                {
-                    username: $("#username").val(),
-                    firstName:$("#first_name").val(),
-                    lastName: $("#last_name").val()
-                }
-            ),
-            contentType: "application/json",
+            data: {
+                    "username": $("#username").val(),
+                    "firstName":$("#first_name").val(),
+                    "lastName": $("#last_name").val()
+                },
             success: function (result) {
 
                 switch (result.type) {
@@ -45,16 +40,76 @@ savePhones = function() {
         {
             url: "/client/editProfile/changePhones",
             type: "POST",
-            dataType: "json",
-            contentType: "application/json",
-            data: JSON.stringify(
-                {
-                    phone1: $("#phone1").val(),
-                    phone2:$("#phone2").val(),
-                    phone3: $("#phone3").val()
+            data: {
+                    "phone1": $("#phone1").val(),
+                    "phone2":$("#phone2").val(),
+                    "phone3": $("#phone3").val()
+            },
+            success: function (result) {
+
+                switch (result.type) {
+                    case "SUCCESS":
+                        $("#alert_message").attr('class', 'alert alert-success');
+                        break;
+                    case "ERROR":
+                        $("#alert_message").attr("class", "alert alert-danger");
+                        break;
+                    default:
+                        alert(result.type);
                 }
-            ),
-            contentType: "application/json",
+
+                $("#alert_message").attr("style", "display:block");
+                $("#alert_message").text(result.status);
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert(xhr.status);
+                alert(thrownError);
+            }
+        });
+}
+
+saveSocials = function() {
+    $.ajax(
+        {
+            url: "/client/editProfile/changeSocials",
+            type: "POST",
+            dataType: "json",
+            //contentType: "application/json",
+            data: {
+                "socials": $("#social_links").val()
+            },
+            success: function (result) {
+
+                switch (result.type) {
+                    case "SUCCESS":
+                        $("#alert_message").attr('class', 'alert alert-success');
+                        break;
+                    case "ERROR":
+                        $("#alert_message").attr("class", "alert alert-danger");
+                        break;
+                    default:
+                        alert(result.type);
+                }
+
+                $("#alert_message").attr("style", "display:block");
+                $("#alert_message").text(result.status);
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert(xhr.status);
+                alert(thrownError);
+            }
+        });
+}
+
+saveEmail = function() {
+    $.ajax(
+        {
+            url: "/client/editProfile/changeEmail",
+            type: "POST",
+            dataType: "json",
+            data: {
+                "email": $("#email").val()
+            },
             success: function (result) {
 
                 switch (result.type) {
@@ -85,5 +140,13 @@ $(document).ready(function() {
 
     $("#save_phones").click(function() {
         savePhones();
+    })
+
+    $("#save_socials").click(function() {
+        saveSocials();
+    })
+
+    $("#save_email").click(function() {
+        saveEmail();
     })
 })

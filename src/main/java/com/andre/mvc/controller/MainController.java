@@ -2,12 +2,10 @@ package com.andre.mvc.controller;
 
 import com.andre.mvc.controller.response.JsonResponse;
 import com.andre.mvc.database.crm.entity.*;
-import com.andre.mvc.database.crm.repository.CoachRepository;
-import com.andre.mvc.database.crm.repository.CourseRepository;
 import com.andre.mvc.database.crm.repository.GroupRepository;
 import com.andre.mvc.database.crm.repository.PlaceRepository;
 import com.andre.mvc.database.forum.entity.Member;
-import com.andre.mvc.manager.ClientServiceImpl;
+import com.andre.mvc.manager.CrmManagerImpl;
 import com.andre.mvc.manager.ForumManagerImpl;
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,17 +24,17 @@ import java.util.List;
 @Controller
 public class MainController {
 
-    @Autowired
-    private CoachRepository coachRepository;
-    @Autowired
-    private CourseRepository courseRepository;
-    @Autowired
-    private PlaceRepository placeRepository;
-    @Autowired
-    private GroupRepository groupRepository;
+//    @Autowired
+//    private CoachRepository coachRepository;
+//    @Autowired
+//    private CourseRepository courseRepository;
+//    @Autowired
+//    private PlaceRepository placeRepository;
+//    @Autowired
+//    private GroupRepository groupRepository;
 
     @Autowired
-    private ClientServiceImpl clientService;
+    private CrmManagerImpl crmManager;
 
     @Autowired
     private ForumManagerImpl forumManager;
@@ -73,7 +71,7 @@ public class MainController {
             return new ModelAndView("login", "errMsg", "Password and confirm password values not equal!");
         }
 
-        if(clientService.loadByPhone(phone) != null) {
+        if(crmManager.loadClientByPhone(phone) != null) {
             return new ModelAndView("login", "errMsg", "Account with entered phone already exist. Please, enter another phone or login!");
         }
 
@@ -92,7 +90,7 @@ public class MainController {
         client.setPassword(password);
         client.setSalt(salt);
 
-        clientService.save(client);
+        crmManager.saveClient(client);
 
         Member member = new Member();
         member.setName(username);
@@ -130,7 +128,7 @@ public class MainController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addClient(@ModelAttribute("client") Client client, BindingResult result) {
 
-        clientService.save(client);
+        crmManager.saveClient(client);
 
         return "redirect:/register";
     }
@@ -141,7 +139,7 @@ public class MainController {
     public
     @ResponseBody
     List<Client> listClientsJson() {
-        return clientService.loadAll();
+        return crmManager.listAllClients();
     }
 
     @RequestMapping(value = "/admin/clients/clientsSearch", method = RequestMethod.GET, headers="Accept=application/json")
@@ -155,7 +153,7 @@ public class MainController {
             @RequestParam String tagsPattern
 
     ) {
-        return clientService.loadClientByConditions("%" + namePattern + "%", "%" + surnamePattern + "%",
+        return crmManager.listClientByConditions("%" + namePattern + "%", "%" + surnamePattern + "%",
                 "%" + phonePattern + "%", "%" + emailPattern + "%", "%" + tagsPattern + "%");
     }
 
@@ -163,11 +161,11 @@ public class MainController {
     @ResponseBody
     public JsonResponse saveClient(@RequestBody Client client) throws JSONException{
         if(!client.getPhone().isEmpty()) {
-            Group group = groupRepository.findByName(client.getGroup().getName());
+            Group group = crmManager.loadGroupByName(client.getGroup().getName());
 
             client.setGroup(group);
 
-            clientService.save(client);
+            crmManager.saveClient(client);
             return new JsonResponse("Ok");
         } else {
             return new JsonResponse("You should enter phone. Client not saved");
@@ -178,7 +176,7 @@ public class MainController {
     @ResponseBody
     public JsonResponse updateClient(@RequestBody Client client) throws JSONException{
         if(!client.getPhone().isEmpty()) {
-            clientService.save(client);
+            crmManager.saveClient(client);
             return new JsonResponse("Ok");
         } else {
             return new JsonResponse("You should enter phone. Client not saved");
@@ -188,8 +186,8 @@ public class MainController {
     @RequestMapping(value = "/admin/clients/deleteClient")
     @ResponseBody
     public JsonResponse deleteClient(@RequestParam Long id) throws JSONException{
-        if(clientService.loadById(id) != null) {
-            clientService.delete(id);
+        if(crmManager.loadClientById(id) != null) {
+            crmManager.deleteClient(id);
             return new JsonResponse("Client was deleted!");
         } else {
             return new JsonResponse("Client not exist! Impossible delete from db!");
@@ -201,7 +199,7 @@ public class MainController {
     @ResponseBody
     @Transactional
     public List<Coach> listCoachesJson() throws JSONException {
-        List<Coach> list = coachRepository.findAll();
+        List<Coach> list = crmManager.listAllCoaches();
         return list;
     }
 
@@ -209,7 +207,7 @@ public class MainController {
     @ResponseBody
     public JsonResponse saveCoach(@RequestBody Coach coach) throws JSONException{
         if(!coach.getPhone().isEmpty()) {
-            coachRepository.save(coach);
+            crmManager.saveCoach(coach);
             return new JsonResponse("Ok");
         } else {
             return new JsonResponse("You should enter phone. Coach not saved");
@@ -220,7 +218,7 @@ public class MainController {
     @ResponseBody
     public JsonResponse updateCoach(@RequestBody Coach coach) throws JSONException{
         if(!coach.getPhone().isEmpty()) {
-            coachRepository.save(coach);
+            crmManager.saveCoach(coach);
             return new JsonResponse("Ok");
         } else {
             return new JsonResponse("You should enter phone. Coach not saved");
@@ -230,8 +228,8 @@ public class MainController {
     @RequestMapping(value = "/admin/coaches/deleteCoach")
     @ResponseBody
     public JsonResponse deleteCoach(@RequestParam Long id) {
-        if(coachRepository.findOne(id) != null) {
-            coachRepository.delete(id);
+        if(crmManager.loadCoachById(id) != null) {
+            crmManager.deleteCoach(id);
             return new JsonResponse("Coach was deleted!");
         } else {
             return new JsonResponse("Coach not exist! Impossible delete from db!");
@@ -245,7 +243,7 @@ public class MainController {
                                             @RequestParam String phonePattern,
                                             @RequestParam String emailPattern
     ) {
-        List<Coach> list = coachRepository.findByNameLikeAndSurnameLikeAndPhoneLikeAndEmailLike("%" + namePattern + "%",
+        List<Coach> list = crmManager.listCoachesByConditions("%" + namePattern + "%",
                 "%" + surnamePattern + "%", "%" + phonePattern + "%", "%" + emailPattern + "%");
         return list;
     }
@@ -254,7 +252,7 @@ public class MainController {
     @RequestMapping(value = "/admin/courses/allCourses", method = RequestMethod.GET, headers="Accept=application/json")
     @ResponseBody
     public List<Course> listCousesJson() throws JSONException {
-        List<Course> list = courseRepository.findAll();
+        List<Course> list = crmManager.listAllCourses();
         return list;
     }
 
@@ -262,7 +260,7 @@ public class MainController {
     @ResponseBody
     public JsonResponse saveCourse(@RequestBody Course course) throws JSONException{
         if(!course.getName().isEmpty()) {
-            Course savedCourse = courseRepository.save(course);
+            crmManager.saveCourse(course);
 
             return new JsonResponse("Ok");
         } else {
@@ -274,11 +272,11 @@ public class MainController {
     @ResponseBody
     public JsonResponse updateCourse(@RequestBody Course course) throws JSONException{
         if(!course.getName().isEmpty()) {
-            Course tempCourse = courseRepository.findOne(course.getId());
+            Course tempCourse = crmManager.loadCourseById(course.getId());
 
             course.setCreationTime(tempCourse.getCreationTime());
 
-            courseRepository.save(course);
+            crmManager.saveCourse(course);
             return new JsonResponse("Ok");
         } else {
             return new JsonResponse("You should enter course name. Course not saved");
@@ -288,8 +286,8 @@ public class MainController {
     @RequestMapping(value = "/admin/courses/deleteCourse")
     @ResponseBody
     public JsonResponse deleteCourse(@RequestParam Long id) {
-        if(courseRepository.findOne(id) != null) {
-            courseRepository.delete(id);
+        if(crmManager.loadCourseById(id) != null) {
+            crmManager.deleteCourse(id);
             return new JsonResponse("Course was deleted!");
         } else {
             return new JsonResponse("Course not exist! Impossible to delete from db!");
@@ -299,7 +297,7 @@ public class MainController {
     @RequestMapping(value = "/admin/courses/courseSearch", method = RequestMethod.GET, headers="Accept=application/json")
     @ResponseBody
     public List<Course> searchesCoursesJson( @RequestParam String namePattern ) {
-        List<Course> list = courseRepository.findByNameLike("%" + namePattern + "%");
+        List<Course> list = crmManager.listCourseByConditions("%" + namePattern + "%");
         return list;
     }
 
@@ -309,7 +307,7 @@ public class MainController {
     public List<String> listCoachesNamesJson() {
         List<String> list = new ArrayList<String>();
 
-        List<Coach> coaches = coachRepository.findAll();
+        List<Coach> coaches = crmManager.listAllCoaches();
 
         for(Coach coach : coaches) {
             list.add(coach.getName());
@@ -323,7 +321,7 @@ public class MainController {
     public List<String> listGroupNamesJson() {
         List<String> list = new ArrayList<String>();
 
-        List<Group> groups = groupRepository.findAll();
+        List<Group> groups = crmManager.listAllGroups();
 
         for(Group group : groups) {
             list.add(group.getName());
@@ -337,7 +335,7 @@ public class MainController {
     public List<String> listPlacesNamesJson() {
         List<String> list = new ArrayList<String>();
 
-        List<Place> places = placeRepository.findAll();
+        List<Place> places = crmManager.listAllPlaces();
 
         for(Place place : places) {
             list.add(place.getName());
@@ -351,7 +349,7 @@ public class MainController {
     public List<String> listCoursesNamesJson() {
         List<String> list = new ArrayList<String>();
 
-        List<Course> courses = courseRepository.findAll();
+        List<Course> courses = crmManager.listAllCourses();
 
         for(Course course : courses) {
             list.add(course.getName());
@@ -364,15 +362,15 @@ public class MainController {
     @ResponseBody
     public JsonResponse saveGroup(@RequestBody Group group) throws JSONException{
         if(!group.getName().isEmpty()) {
-            Coach coach = coachRepository.findByName(group.getCoach().getName());
-            Place place = placeRepository.findByName(group.getPlace().getName());
-            Course course = courseRepository.findByName(group.getCourse().getName());
+            Coach coach = crmManager.loadCoachByName(group.getCoach().getName());
+            Place place = crmManager.loadPlaceByName(group.getPlace().getName());
+            Course course = crmManager.loadCourseByName(group.getCourse().getName());
 
             group.setCoach(coach);
             group.setPlace(place);
             group.setCourse(course);
 
-            groupRepository.save(group);
+            crmManager.saveGroup(group);
             return new JsonResponse("Ok");
         } else {
             return new JsonResponse("You should enter group name. Group not saved");
@@ -382,22 +380,22 @@ public class MainController {
     @RequestMapping(value = "/admin/groups/allGroups", method = RequestMethod.GET, headers="Accept=application/json")
     @ResponseBody
     public List<Group> listGroupsJson() throws JSONException {
-        List<Group> list = groupRepository.findAll();
+        List<Group> list = crmManager.listAllGroups();
         return list;
     }
 
     @RequestMapping(value = "/admin/groups/groupSearch", method = RequestMethod.GET, headers="Accept=application/json")
     @ResponseBody
     public List<Group> searchGroupsJson( @RequestParam String namePattern ) {
-        List<Group> list = groupRepository.findByNameLike("%" + namePattern + "%");
+        List<Group> list = crmManager.listGroupByConditions("%" + namePattern + "%");
         return list;
     }
 
     @RequestMapping(value = "/admin/groups/deleteGroup")
     @ResponseBody
     public JsonResponse deleteGroup(@RequestParam Long id) {
-        if(groupRepository.findOne(id) != null) {
-            groupRepository.delete(id);
+        if(crmManager.loadGroupById(id) != null) {
+            crmManager.deleteGroup(id);
             return new JsonResponse("Group was deleted!");
         } else {
             return new JsonResponse("Group not exist! Impossible to delete from db!");
@@ -408,11 +406,11 @@ public class MainController {
     @ResponseBody
     public JsonResponse updateGroup(@RequestBody Group group) throws JSONException{
         if(!group.getName().isEmpty()) {
-            Group tempGroup = groupRepository.findOne(group.getId());
+            Group tempGroup = crmManager.loadGroupById(group.getId());
 
             group.setCreationTime(tempGroup.getCreationTime());
 
-            groupRepository.save(group);
+            crmManager.saveGroup(group);
             return new JsonResponse("Ok");
         } else {
             return new JsonResponse("You should enter course name. Course not saved");

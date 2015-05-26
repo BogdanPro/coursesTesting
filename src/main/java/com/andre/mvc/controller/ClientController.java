@@ -1,21 +1,16 @@
 package com.andre.mvc.controller;
 
-import com.andre.mvc.controller.requestClasses.EditNameRequest;
-import com.andre.mvc.controller.requestClasses.EditPhonesRequest;
 import com.andre.mvc.controller.response.JsonResponse;
 import com.andre.mvc.database.crm.entity.Client;
 import com.andre.mvc.database.forum.entity.Member;
-import com.andre.mvc.manager.ClientService;
+import com.andre.mvc.manager.CrmManager;
 import com.andre.mvc.manager.ForumManagerImpl;
 import com.andre.mvc.security.CustomUserDetailsUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -28,7 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class ClientController {
 
     @Autowired
-    private ClientService clientService;
+    private CrmManager crmManager;
     @Autowired
     private ForumManagerImpl forumManager;
     @Autowired
@@ -40,7 +35,7 @@ public class ClientController {
 
         CustomUserDetailsUser user = (CustomUserDetailsUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        Client client = clientService.loadByPhone(user.getPhone());
+        Client client = crmManager.loadClientByPhone(user.getPhone());
 
         modelAndView.addObject("username", client.getName());
         modelAndView.addObject("phone", client.getPhone());
@@ -54,13 +49,15 @@ public class ClientController {
 
     @RequestMapping(value = "editProfile/changeName", method = RequestMethod.POST, headers = "Accept=application/json")
     @ResponseBody
-    public JsonResponse editName(@RequestBody EditNameRequest request) {
+    public JsonResponse editName(@RequestParam String username,
+                                 @RequestParam String firstName,
+                                 @RequestParam String lastName) {
 
         CustomUserDetailsUser user = (CustomUserDetailsUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         String phone = user.getPhone();
         String currentUsername = user.getUsername();
-        String newUsername = request.getUsername();
+        String newUsername = username;
 
         Member member = forumManager.loadByName(newUsername);
 
@@ -68,12 +65,12 @@ public class ClientController {
         if (member == null) {
             // we should search client by phone, because it's required field in registration
             // so it's unique and in's guaranteed not null
-            Client client = clientService.loadByPhone(phone);
+            Client client = crmManager.loadClientByPhone(phone);
             System.out.println(client);
             client.setUsername(newUsername);
-            client.setName(request.getFirstName());
-            client.setSurname(request.getLastName());
-            clientService.save(client);
+            client.setName(firstName);
+            client.setSurname(lastName);
+            crmManager.saveClient(client);
 
 //            //reinit. Old object is useless now
 //            member = forumManager.loadByName(currentUsername);
@@ -90,11 +87,11 @@ public class ClientController {
 //                    member.setPassword(password);
 //                    member.setGroup(0);
 //
-//                    forumManager.save(member);
+//                    forumManager.saveClient(member);
 //                }
 //            } else {
 //                member.setName(newUsername);
-//                forumManager.save(member);
+//                forumManager.saveClient(member);
 //            }
 
             //maybe dangerous!!!!
@@ -109,23 +106,49 @@ public class ClientController {
 
     @RequestMapping(value = "editProfile/changePhones", method = RequestMethod.POST, headers = "Accept=application/json")
     @ResponseBody
-    public JsonResponse editPhone(@RequestBody EditPhonesRequest request) {
+    public JsonResponse editPhone(@RequestParam String phone1,
+                                  @RequestParam String phone2,
+                                  @RequestParam String phone3) {
 
         //bad validation
-        if(request.getPhone1().isEmpty()) {
+        if(phone1.isEmpty()) {
             return new JsonResponse("Primary phone can't be empty", JsonResponse.ERROR);
         }
 
         CustomUserDetailsUser user = (CustomUserDetailsUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        Client client = clientService.loadByPhone(user.getPhone());
+        Client client = crmManager.loadClientByPhone(user.getPhone());
 
-        client.setPhone(request.getPhone1());
-        client.setPhone2(request.getPhone2());
-        client.setPhone3(request.getPhone3());
+        client.setPhone(phone1);
+        client.setPhone2(phone2);
+        client.setPhone3(phone3);
 
-        clientService.save(client);
+        crmManager.saveClient(client);
         user.setPhone(client.getPhone());
+        return new JsonResponse("Changes accepted", JsonResponse.SUCCESS);
+    }
+
+    @RequestMapping(value = "editProfile/changeSocials")
+    @ResponseBody
+    public JsonResponse editSocials(@RequestParam String socials) {
+        CustomUserDetailsUser user = (CustomUserDetailsUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        Client client = crmManager.loadClientByPhone(user.getPhone());
+        client.setSocialLinks(socials);
+        crmManager.saveClient(client);
+
+        return new JsonResponse("Changes accepted", JsonResponse.SUCCESS);
+    }
+
+    @RequestMapping(value = "editProfile/changeEmail")
+    @ResponseBody
+    public JsonResponse editEmail(@RequestParam String email) {
+        CustomUserDetailsUser user = (CustomUserDetailsUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        Client client = crmManager.loadClientByPhone(user.getPhone());
+        client.setEmail(email);
+        crmManager.saveClient(client);
+
         return new JsonResponse("Changes accepted", JsonResponse.SUCCESS);
     }
 }
