@@ -84,7 +84,12 @@ public class MainController {
         password = passwordEncoder.encodePassword(password, salt);
 
         Client client = new Client();
-        client.setName(username);
+
+        if(username.isEmpty() || username == null) {
+            username = phone;
+        }
+
+        client.setUsername(username);
         client.setEmail(email);
         client.setPhone(phone);
         client.setPassword(password);
