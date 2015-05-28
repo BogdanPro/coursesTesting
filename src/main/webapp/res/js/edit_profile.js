@@ -133,6 +133,46 @@ saveEmail = function() {
         });
 }
 
+changePassword = function() {
+    if(!$("#new_pass").val().eq($("#conf_new_pass").val())) {
+        $("#alert_message").attr("class", "alert alert-danger");
+        $("#alert_message").attr("style", "display:block");
+        $("#alert_message").text("New password and confirmed new password values are not equal!");
+    }
+
+    $.ajax(
+        {
+            url: "/client/editProfile/changePassword",
+            type: "POST",
+            dataType: "json",
+            data: {
+                "password": $("#old_pass").val(),
+                "newPassword": $("#new_pass").val(),
+                "confirmedPassword": $("#conf_new_pass").val()
+            },
+            success: function (result) {
+
+                switch (result.type) {
+                    case "SUCCESS":
+                        $("#alert_message").attr('class', 'alert alert-success');
+                        break;
+                    case "ERROR":
+                        $("#alert_message").attr("class", "alert alert-danger");
+                        break;
+                    default:
+                        alert(result.type);
+                }
+
+                $("#alert_message").attr("style", "display:block");
+                $("#alert_message").text(result.status);
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert(xhr.status);
+                alert(thrownError);
+            }
+        });
+}
+
 $(document).ready(function() {
     $("#save_names").click(function() {
         saveNames();
@@ -148,5 +188,9 @@ $(document).ready(function() {
 
     $("#save_email").click(function() {
         saveEmail();
+    })
+
+    $("#change_pass").click(function() {
+        changePassword();
     })
 })

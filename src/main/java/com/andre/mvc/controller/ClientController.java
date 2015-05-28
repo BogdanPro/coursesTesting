@@ -9,9 +9,12 @@ import com.andre.mvc.security.CustomUserDetailsUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.keygen.KeyGenerators;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.xml.bind.DatatypeConverter;
 
 
 /**
@@ -148,6 +151,42 @@ public class ClientController {
         Client client = crmManager.loadClientByPhone(user.getPhone());
         client.setEmail(email);
         crmManager.saveClient(client);
+
+        return new JsonResponse("Changes accepted", JsonResponse.SUCCESS);
+    }
+
+    @RequestMapping(value = "editProfile/changeEmail")
+    @ResponseBody
+    public JsonResponse changePassword(@RequestParam String password,
+                                       @RequestParam String newPassword,
+                                       @RequestParam String confirmedPassword) {
+        if(!newPassword.equals(confirmedPassword)) {
+            return new JsonResponse("New password and confirmed new password values are not equal!",
+                    JsonResponse.ERROR);
+        }
+
+        CustomUserDetailsUser user = (CustomUserDetailsUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        Client client = crmManager.loadClientByPhone(user.getPhone());
+
+        String currentEncodedPass = user.getPassword();
+        String currentSalt = user.getSalt();
+
+        String encodedPasswordForCheck = passwordEncoder.encodePassword(password, currentSalt);
+
+        if(!currentEncodedPass.equals(encodedPasswordForCheck)) {
+            return new JsonResponse("Illegal old password!", JsonResponse.ERROR);
+        }
+
+        // generate the "salt" value for password encoding
+        byte[] saltBytes = KeyGenerators.secureRandom(2).generateKey();
+        String newSalt = DatatypeConverter.printHexBinary(saltBytes);
+
+        String newEncodedPassword = passwordEncoder.encodePassword(newPassword, newSalt);
+
+        client.setPassword(newEncodedPassword);
+        client.setSalt(newSalt);
+        
 
         return new JsonResponse("Changes accepted", JsonResponse.SUCCESS);
     }
