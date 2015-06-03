@@ -1,6 +1,6 @@
 <%--
   Created by IntelliJ IDEA.
-  User: 1
+  User: Khemrayev A.K.
   Date: 22.04.2015
   Time: 15:42
   To change this template use File | Settings | File Templates.
@@ -18,13 +18,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.5.4/bootstrap-select.min.js"></script>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
   <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="/res/js/jquery.md5.js"></script>
-  <%--<link rel="stylesheet" href="/res/css/bootstrap.min.css">--%>
-  <%--<link rel="stylesheet" href="/res/css/bootstrap-theme.min.css">--%>
-  <%--<link rel="stylesheet" href="/res/css/bootstrap-select.min.css">--%>
-  <%--<script src="/res/js/bootstrap-select.min.js"></script>--%>
-  <%--<script type="text/javascript" src="/res/js/jquery.js"></script>--%>
-  <%--<script type="text/javascript" src="/res/js/bootstrap.min.js"></script>--%>
 
 
   <style>
@@ -158,7 +151,7 @@
           <div class="panel-body">
             <div class="row">
               <div class="col-lg-12">
-                <form id="login-form" action='${loginUrl}' <%--onsubmit="encodePasswordSingIn();"--%> method="post" role="form" style="display: block;">
+                <form id="login-form" action='${loginUrl}' method="post" role="form" style="display: block;">
                   <div class="form-group">
                     <input type="text" name="username" id="j_username" tabindex="1" class="form-control" placeholder="Phone">
                   </div>
@@ -183,7 +176,7 @@
                     </div>
                   </div>
                 </form>
-                <form id="register-form" <%--onsubmit="encodePasswordReg();"--%> action="/registration" method="post" role="form" style="display: none;">
+                <form id="register-form" action="/registration" method="post" role="form" style="display: none;">
                   <div class="form-group">
                     <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="" required>
                   </div>
@@ -215,19 +208,6 @@
     </div>
   </div>
 <script type="text/javascript">
-
-  encodePasswordSingIn = function() {
-    var securedPassword = $.md5($("#j_password").val());
-    alert(securedPassword);
-    $("#j_password").val(securedPassword);
-  }
-
-  encodePasswordReg = function() {
-    var securedPassword = $.md5($("#password").val());
-    var securedConfirmPassword = $.md5($("#confirm_password").val());
-    $("#password").val(securedPassword);
-    $("#confirm_password").val(securedConfirmPassword);
-  };
 
   $(function() {
 

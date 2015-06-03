@@ -15,7 +15,7 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * Created by 1 on 12.05.2015.
+ * Created by Khemrayev A.K. on 12.05.2015.
  */
 @Service
 public class CustomUserDetailsService implements UserDetailsService {

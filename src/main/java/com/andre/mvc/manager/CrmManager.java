@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.lang.String;import java.util.List;
 
 /**
- * Created by 1 on 12.05.2015.
+ * Created by Khemrayev A.K. on 12.05.2015.
  */
 public interface CrmManager {
 

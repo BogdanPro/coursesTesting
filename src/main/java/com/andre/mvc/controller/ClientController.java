@@ -18,7 +18,7 @@ import javax.xml.bind.DatatypeConverter;
 
 
 /**
- * Created by 1 on 21.05.2015.
+ * Created by Khemrayev A.K. on 21.05.2015.
  */
 
 @Controller

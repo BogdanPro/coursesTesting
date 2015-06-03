@@ -1,5 +1,5 @@
 /**
- * Created by 1 on 27.04.2015.
+ * Created by Khemrayev A.K. on 27.04.2015.
  */
 
 getListOfGroups = function() {

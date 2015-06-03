@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- * Created by 1 on 05.05.2015.
+ * Created by Khemrayev A.K. on 05.05.2015.
  */
 public interface CourseRepository extends JpaRepository<Course, Long> {
     public List<Course> findByNameLike(String namePattern);

@@ -4,7 +4,7 @@ import com.andre.mvc.database.crm.entity.Place;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
- * Created by 1 on 06.05.2015.
+ * Created by Khemrayev A.K. on 06.05.2015.
  */
 public interface PlaceRepository extends JpaRepository<Place, Long> {
 

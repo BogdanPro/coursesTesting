@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 /**
- * Created by 1 on 24.04.2015.
+ * Created by Khemrayev A.K. on 24.04.2015.
  */
 public interface GroupRepository extends JpaRepository<Group, Long> {
     public List<Group> findByNameLike(String namePattern);

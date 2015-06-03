@@ -1,5 +1,5 @@
 /**
- * Created by 1 on 05.05.2015.
+ * Created by Khemrayev A.K. on 05.05.2015.
  */
 /**
  * Created by 1 on 05.05.2015.
@@ -74,7 +74,7 @@ getListOfCourses = function() {
                 alert(thrownError);
             }
         });
-}
+};
 
 
 
@@ -114,7 +114,7 @@ findAllGroups = function() {
                 alert(thrownError);
             }
         });
-}
+};
 
 findGroupByCondition = function() {
     var namePattern = $("#name").val();
@@ -153,7 +153,7 @@ findGroupByCondition = function() {
                 alert(thrownError);
             }
         });
-}
+};
 
 saveGroup = function() {
     $.ajax(

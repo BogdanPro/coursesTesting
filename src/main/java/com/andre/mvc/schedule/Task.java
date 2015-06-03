@@ -3,7 +3,7 @@ package com.andre.mvc.schedule;
 import java.lang.reflect.Method;
 
 /**
- * Created by 1 on 20.05.2015.
+ * Created by Khemrayev A.K. on 20.05.2015.
  */
 public class Task {
     private Method method;

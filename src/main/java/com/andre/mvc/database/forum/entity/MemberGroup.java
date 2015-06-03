@@ -3,7 +3,7 @@ package com.andre.mvc.database.forum.entity;
 import javax.persistence.*;
 
 /**
- * Created by 1 on 18.05.2015.
+ * Created by Khemrayev A.K. on 18.05.2015.
  */
 
 @Entity

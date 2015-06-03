@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.User;
 import java.util.Collection;
 
 /**
- * Created by 1 on 19.05.2015.
+ * Created by Khemrayev A.K. on 19.05.2015.
  */
 public class CustomUserDetailsUser extends User {
     private String salt;

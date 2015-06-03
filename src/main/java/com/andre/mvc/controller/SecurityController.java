@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * Created by 1 on 12.05.2015.
+ * Created by Khemrayev A.K. on 12.05.2015.
  */
 @Controller
 public class SecurityController {

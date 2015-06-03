@@ -1,5 +1,5 @@
 /**
- * Created by 1 on 05.05.2015.
+ * Created by Khemrayev A.K. on 05.05.2015.
  */
 findAllCourses = function() {
     $.ajax(

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import java.lang.Override;import java.lang.String;import java.util.List;
 
 /**
- * Created by 1 on 12.05.2015.
+ * Created by Khemrayev A.K. on 12.05.2015.
  */
 @Component("clientService")
 public class CrmManagerImpl implements CrmManager {

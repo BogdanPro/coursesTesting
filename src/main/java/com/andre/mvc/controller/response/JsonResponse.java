@@ -1,7 +1,7 @@
 package com.andre.mvc.controller.response;
 
 /**
- * Created by 1 on 25.05.2015.
+ * Created by Khemrayev A.K. on 25.05.2015.
  */
 public class JsonResponse {
     public static final String SUCCESS = "SUCCESS";
