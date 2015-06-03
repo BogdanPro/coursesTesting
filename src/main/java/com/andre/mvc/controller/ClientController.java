@@ -155,7 +155,7 @@ public class ClientController {
         return new JsonResponse("Changes accepted", JsonResponse.SUCCESS);
     }
 
-    @RequestMapping(value = "editProfile/changeEmail")
+    @RequestMapping(value = "editProfile/changePassword")
     @ResponseBody
     public JsonResponse changePassword(@RequestParam String password,
                                        @RequestParam String newPassword,
@@ -186,7 +186,11 @@ public class ClientController {
 
         client.setPassword(newEncodedPassword);
         client.setSalt(newSalt);
-        
+
+        crmManager.saveClient(client);
+
+        user.setSalt(newSalt);
+        user.setPassword(newEncodedPassword);
 
         return new JsonResponse("Changes accepted", JsonResponse.SUCCESS);
     }

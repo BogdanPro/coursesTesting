@@ -12,6 +12,16 @@ public class CustomUserDetailsUser extends User {
     private String salt;
     private String phone;
     private String username;
+    private String password;
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public CustomUserDetailsUser(String username, String password, boolean enabled,
                                  boolean accountNonExpired, boolean credentialsNonExpired,
@@ -22,6 +32,7 @@ public class CustomUserDetailsUser extends User {
         this.salt = salt;
         this.phone = phone;
         this.username = username;
+        this.password = password;
     }
 
     public String getSalt() {

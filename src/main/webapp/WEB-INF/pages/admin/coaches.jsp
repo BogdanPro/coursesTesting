@@ -28,7 +28,7 @@
 <body>
 
 <div>
-  <a class="btn btn-large btn-info" href="/admin/cabinet">Back to Cabinet</a>
+  <a class="btn btn-large btn-info" href="/client/cabinet">Back to Cabinet</a>
 </div>
 
 <ul class="nav nav-tabs">
