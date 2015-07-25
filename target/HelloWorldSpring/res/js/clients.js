@@ -1,5 +1,5 @@
 /**
- * Created by 1 on 27.04.2015.
+ * Created by Khemrayev A.K. on 27.04.2015.
  */
 
 getListOfGroups = function() {
@@ -57,9 +57,10 @@ findAllClients = function() {
                         "<td>" + client.creationTime +"</td>" +
                         "<td>" + client.modificationTime +"</td>" +
                         "<td>" + client.password +"</td>" +
+                        "<td>" + "<input type=\"checkbox\" class=\"chkbox\" id=\""+client.id+"\" name=\"phones[]\" value=\""+client.phone+"\">"+"</td>" +
                         "</tr>");
                 });
-
+                //id=\"phones[]\"
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 alert(xhr.status);
@@ -119,6 +120,7 @@ findByCondition = function() {
                         "<td>" + client.creationTime +"</td>" +
                         "<td>" + client.modificationTime +"</td>" +
                         "<td>" + client.password +"</td>" +
+                        "<td>" + "<input type=\"checkbox\" class=\"chkbox\" name=\"phones[]\" value=\""+client.phone+"\">"+"</td>" +
                         "</tr>");
                 });
 
@@ -235,3 +237,30 @@ deleteClient = function() {
             }
         });
 }
+
+sendSms = function() {
+    var htmlPhones = $("input:checked").map(function () { return this.value; }).toArray();
+    $.ajax(
+        {
+            url: "/sendSMS",
+            type: "POST",
+            //dataType: "json",
+            //contentType: "application/json",
+           data: /*JSON.stringify(request)*/
+                {
+                    "textVal": $("#text").val(),
+                    "phones": JSON.stringify(htmlPhones)
+                }
+            ,
+            success: function (result) {
+                if(result) {
+                    alert(result.status)
+                }
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert(xhr.status);
+                alert(thrownError);
+            }
+        });
+}
+

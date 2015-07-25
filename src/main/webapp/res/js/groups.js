@@ -153,7 +153,7 @@ findGroupByCondition = function() {
                 alert(thrownError);
             }
         });
-};
+};ce
 
 saveGroup = function() {
     $.ajax(

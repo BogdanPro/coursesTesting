@@ -10,7 +10,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <html>
 <head>
-    <title>Cabiner</title>
+    <title>Cabinet</title>
 </head>
 <body>
 

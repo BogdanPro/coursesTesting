@@ -22,13 +22,18 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="Courses_testing" />
         <module name="HelloWorldSpring" />
+      </profile>
+      <profile default="false" name="Annotation profile for Courses_testing" enabled="true">
+        <sourceOutputDir name="target\generated-sources\annotations" />
+        <sourceTestOutputDir name="target\generated-test-sources\test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="Courses_testing" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="Courses_testing" target="1.6" />
-      <module name="HelloWorldSpring" target="1.6" />
     </bytecodeTargetLevel>
   </component>
 </project>

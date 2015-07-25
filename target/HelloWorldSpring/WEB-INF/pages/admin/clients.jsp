@@ -1,6 +1,6 @@
 <%--
   Created by IntelliJ IDEA.
-  User: 1
+  User: Khemrayev A.K.
   Date: 27.04.2015
   Time: 9:06
   To change this template use File | Settings | File Templates.
@@ -124,7 +124,7 @@
         </div>
     </div>
 
-    <div id="panel2" class="tab-pane fade">
+    <form id="panel2" name="panel2" class="tab-pane fade">
       <h3>Searching...</h3>
 
         <div class="input-group">
@@ -148,6 +148,7 @@
           <button type="button" class="btn btn-primary btn-md" onclick="findByCondition()">Search</button>
         </div>
 
+
       <button type="button" class="btn btn-primary btn-md" onclick="findAllClients()">Find All</button>
       <table class="table" id="clientsTable">
         <thead>
@@ -170,12 +171,16 @@
           <th>Creation time</th>
           <th>Modification time</th>
           <th>Password</th>
+            <th>SMS</th>
         </tr>
         </thead>
         <tbody>
           <tr></tr>
         </tbody>
       </table>
+            <input id="text" type="text" placeholder="SMS" style="width: 300px">
+                <input onclick="sendSms()" type="button" value="Submit">
+        </form>
     </div>
     <%--<div id="panel3" class="tab-pane fade">--%>
       <%--<h3>Панель 3</h3>--%>
@@ -186,7 +191,7 @@
       <%--<p>Содержимое 4 панели...</p>--%>
     <%--</div>--%>
 
-      <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true" data-replace="true">
+      <%--<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true" data-replace="true">
           <div class="modal-dialog">
               <div class="modal-content">
                   <div class="modal-header">
@@ -280,9 +285,10 @@
               </div>
           </div>
       </div>
-  </div>
+  </div>--%>
 
       <script type="text/javascript">
+          var lastChecked = null;
           $(document).ready(function(){
 
               getListOfGroups();
@@ -305,7 +311,28 @@
                   $("#updateId3").val($(this).find("td:eq(14)").text());
                   $("#updatePassword").val($(this).find("td:eq(17)").text());
               });
+
+              var $chkboxes = $('.chkbox');
+              $chkboxes.click(function(e) {
+                  if(!lastChecked) {
+                      lastChecked = this;
+                      return;
+                  }
+
+                  if(e.shiftKey) {
+                      var start = $chkboxes.index(this);
+                      var end = $chkboxes.index(lastChecked);
+
+                      $chkboxes.slice(Math.min(start,end), Math.max(start,end)+ 1).prop('checked', lastChecked.checked);
+
+                  }
+
+                  lastChecked = this;
+              });
           });
+
+
+
       </script>
 </body>
 </html>
